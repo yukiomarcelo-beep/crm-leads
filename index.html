@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diagnóstico Empresarial Gratuito</title>
+<title>Análise Estratégica Gratuita</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -300,14 +300,14 @@
 <body>
 <div class="wrapper">
 
-  <div class="badge">Diagnóstico com IA</div>
+  <div class="badge">Análise Estratégica</div>
   <h1>Descubra o potencial<br><span>da sua empresa</span></h1>
-  <p class="subtitle">Preencha os dados abaixo e receba em minutos um diagnóstico empresarial completo gerado por inteligência artificial.</p>
+  <p class="subtitle">Preencha os dados abaixo e receba em minutos um diagnóstico empresarial completo personalizada para sua empresa.</p>
 
   <div class="benefits">
-    <div class="benefit-item">Análise em tempo real</div>
+    <div class="benefit-item">Análise personalizada</div>
     <div class="benefit-item">Score de potencial 0-100</div>
-    <div class="benefit-item">Diagnóstico personalizado</div>
+    <div class="benefit-item">Resultado em até 24h</div>
     <div class="benefit-item">Próximos passos claros</div>
   </div>
 
@@ -388,7 +388,7 @@
       <button type="submit" class="btn" id="btnEnviar">
         <div class="btn-inner">
           <div class="spinner" id="spinner"></div>
-          <span id="btnText">Solicitar Diagnóstico Gratuito →</span>
+          <span id="btnText">Solicitar Análise Gratuita →</span>
         </div>
       </button>
 
@@ -402,8 +402,8 @@
 
   <div class="card success-screen" id="successScreen">
     <div class="success-icon">✓</div>
-    <h2>Diagnóstico em andamento!</h2>
-    <p>Recebemos seus dados. Nossa IA está analisando o perfil da sua empresa agora.<br><br>
+    <h2>Análise em andamento!</h2>
+    <p>Recebemos seus dados. Nossa equipe está analisando o perfil da sua empresa agora.<br><br>
     Você receberá o diagnóstico completo em breve. Fique de olho no seu WhatsApp e e-mail.</p>
   </div>
 
@@ -478,7 +478,7 @@ async function enviarLead(e) {
     errorMsg.style.display = "block";
     btn.classList.remove("loading");
     spinner.style.display = "none";
-    btnText.textContent = "Solicitar Diagnóstico Gratuito →";
+    btnText.textContent = "Solicitar Análise Gratuita →";
   }
 }
 

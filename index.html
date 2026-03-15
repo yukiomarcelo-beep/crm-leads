@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Empresarial Gratuito</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #080C10;
+    --card: #0E1318;
+    --border: #1E2530;
+    --accent: #4F8EF7;
+    --accent2: #38D9A9;
+    --warn: #F5A623;
+    --text: #D4DCE8;
+    --muted: #5A6880;
+    --white: #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(79,142,247,0.12), transparent),
+      radial-gradient(ellipse 50% 30% at 80% 80%, rgba(56,217,169,0.06), transparent);
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 560px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(79,142,247,0.12);
+    border: 1px solid rgba(79,142,247,0.3);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(1.3); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(26px, 5vw, 36px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 7px;
+  }
+
+  label span.req { color: var(--accent); margin-left: 2px; }
+
+  input, select, textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235A6880' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  select option { background: #0E1318; color: var(--white); }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79,142,247,0.12);
+  }
+
+  input::placeholder, textarea::placeholder { color: var(--muted); }
+
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0;
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .benefit-item::before {
+    content: '✓';
+    color: var(--accent2);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent);
+    border: none;
+    border-radius: 12px;
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn:hover {
+    background: #6BA3FF;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(79,142,247,0.35);
+  }
+
+  .btn:active { transform: translateY(0); }
+
+  .btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .btn-inner { display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: none;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .privacy {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  .privacy a { color: var(--accent); text-decoration: none; }
+
+  /* Sucesso */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .success-icon {
+    width: 72px; height: 72px;
+    background: rgba(56,217,169,0.12);
+    border: 2px solid var(--accent2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+  }
+
+  .success-screen h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .success-screen p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .error-msg {
+    background: rgba(248,81,73,0.1);
+    border: 1px solid rgba(248,81,73,0.3);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #F85149;
+    margin-top: 12px;
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 22px 18px; }
+    .row-2 { grid-template-columns: 1fr; }
+    .benefits { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="badge">Diagnóstico com IA</div>
+  <h1>Descubra o potencial<br><span>da sua empresa</span></h1>
+  <p class="subtitle">Preencha os dados abaixo e receba em minutos um diagnóstico empresarial completo gerado por inteligência artificial.</p>
+
+  <div class="benefits">
+    <div class="benefit-item">Análise em tempo real</div>
+    <div class="benefit-item">Score de potencial 0-100</div>
+    <div class="benefit-item">Diagnóstico personalizado</div>
+    <div class="benefit-item">Próximos passos claros</div>
+  </div>
+
+  <div class="card" id="formCard">
+
+    <form id="leadForm" onsubmit="enviarLead(event)">
+
+      <div class="row-2">
+        <div class="form-group">
+          <label>Nome completo <span class="req">*</span></label>
+          <input type="text" name="nome" placeholder="Seu nome" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp <span class="req">*</span></label>
+          <input type="tel" name="telefone" placeholder="(11) 99999-9999" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-mail <span class="req">*</span></label>
+        <input type="email" name="email" placeholder="seu@email.com" required>
+      </div>
+
+      <div class="row-2">
+        <div class="form-group">
+          <label>Nome da empresa <span class="req">*</span></label>
+          <input type="text" name="empresa" placeholder="Sua empresa" required>
+        </div>
+        <div class="form-group">
+          <label>Segmento <span class="req">*</span></label>
+          <select name="segmento" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Varejo</option>
+            <option>SaaS / Tecnologia</option>
+            <option>Serviços</option>
+            <option>Indústria</option>
+            <option>Saúde</option>
+            <option>Educação</option>
+            <option>Construção Civil</option>
+            <option>Alimentação / Gastronomia</option>
+            <option>Agência / Marketing</option>
+            <option>Outros</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Faturamento mensal estimado <span class="req">*</span></label>
+        <select name="faturamento" required>
+          <option value="" disabled selected>Selecione a faixa...</option>
+          <option>Até R$ 50k/mês</option>
+          <option>R$ 50k - R$ 200k/mês</option>
+          <option>R$ 200k - R$ 500k/mês</option>
+          <option>Acima de R$ 500k/mês</option>
+        </select>
+      </div>
+
+      <div class="divider">Informações adicionais</div>
+
+      <div class="form-group">
+        <label>Qual é seu maior desafio atual?</label>
+        <textarea name="desafio" placeholder="Ex: Aumentar vendas, reduzir custos, melhorar gestão..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Como nos conheceu?</label>
+        <select name="origem">
+          <option value="Formulário Web">Formulário Web</option>
+          <option>Instagram</option>
+          <option>WhatsApp</option>
+          <option>Indicação</option>
+          <option>LinkedIn</option>
+          <option>Google</option>
+          <option>Evento</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn" id="btnEnviar">
+        <div class="btn-inner">
+          <div class="spinner" id="spinner"></div>
+          <span id="btnText">Solicitar Diagnóstico Gratuito →</span>
+        </div>
+      </button>
+
+      <div class="error-msg" id="errorMsg">
+        Erro ao enviar. Verifique sua conexão e tente novamente.
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="card success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <h2>Diagnóstico em andamento!</h2>
+    <p>Recebemos seus dados. Nossa IA está analisando o perfil da sua empresa agora.<br><br>
+    Você receberá o diagnóstico completo em breve. Fique de olho no seu WhatsApp e e-mail.</p>
+  </div>
+
+  <p class="privacy">
+    Seus dados estão protegidos. Nunca enviamos spam.<br>
+    Ao enviar, você concorda com nossa <a href="#">Política de Privacidade</a>.
+  </p>
+
+</div>
+
+<script>
+// ============================================================
+// CONFIGURAÇÃO — substitua pela URL do seu Webhook no n8n
+// ============================================================
+const WEBHOOK_URL = "https://marceloyukio1980.app.n8n.cloud/webhook/captura-lead";
+// ============================================================
+
+async function enviarLead(e) {
+  e.preventDefault();
+
+  const btn    = document.getElementById("btnEnviar");
+  const spinner = document.getElementById("spinner");
+  const btnText = document.getElementById("btnText");
+  const errorMsg = document.getElementById("errorMsg");
+
+  btn.classList.add("loading");
+  spinner.style.display = "block";
+  btnText.textContent = "Enviando...";
+  errorMsg.style.display = "none";
+
+  const form = e.target;
+  const data = {
+    nome:       form.nome.value.trim(),
+    email:      form.email.value.trim(),
+    telefone:   form.telefone.value.trim(),
+    empresa:    form.empresa.value.trim(),
+    segmento:   form.segmento.value,
+    faturamento: form.faturamento.value,
+    desafio:    form.desafio.value.trim(),
+    origem:     form.origem.value,
+    timestamp:  new Date().toISOString(),
+    fonte:      window.location.href
+  };
+
+  try {
+    const response = await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok || response.status === 200) {
+      document.getElementById("formCard").style.display = "none";
+      document.getElementById("successScreen").style.display = "block";
+
+      // Scroll para o topo
+      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      // Evento de conversão (Google Analytics / Meta Pixel)
+      if (typeof gtag !== "undefined") {
+        gtag("event", "lead_captured", { event_category: "CRM", event_label: data.segmento });
+      }
+      if (typeof fbq !== "undefined") {
+        fbq("track", "Lead", { content_name: "Diagnostico Empresarial" });
+      }
+
+    } else {
+      throw new Error("Status " + response.status);
+    }
+  } catch (err) {
+    console.error("Erro ao enviar lead:", err);
+    errorMsg.style.display = "block";
+    btn.classList.remove("loading");
+    spinner.style.display = "none";
+    btnText.textContent = "Solicitar Diagnóstico Gratuito →";
+  }
+}
+
+// Máscara de telefone
+document.querySelector('input[name="telefone"]').addEventListener('input', function(e) {
+  let v = e.target.value.replace(/\D/g, '');
+  if (v.length <= 10) {
+    v = v.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+  } else {
+    v = v.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+  }
+  e.target.value = v;
+});
+</script>
+</body>
+</html>
